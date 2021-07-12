@@ -31,7 +31,7 @@ You can connect as registered user with connection information below :
 
 VERSION
 Symfony : 5.3
-PHP version : 8.0.3
+PHP version : 7.4.9
 MySQL version : 5.7.31-10.4.13-MariaDB 
 Composer : 2.0.8
 
