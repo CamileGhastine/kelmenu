@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<div class="container-fluid">
+		<a class="navbar-brand kelMenuBrand" href="{{ path('home_index') }}"><img src="{{ asset('img/kelmenuLogo.png') }}" class="logo mx-2" alt="Logo KelMenu.com">KelMenu.com</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarColor02">
+			<ul class="navbar-nav me-auto">
+				<li class="nav-item">
+					<a class="nav-link active" href="{{ path('home_index') }}">Accueil
+						<span class="visually-hidden">(current)</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Recettes</a>
+				</li>
+				{% if not app.user %}
+
+					<li class="nav-item">
+						<a class="nav-link" href="#">Mon bloc notes</a>
+					</li>
+				{% else %}
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mon bloc notes</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="#">Accès à mon bloc notes</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Mes recettes</a>
+							<a class="dropdown-item" href="#">Mes évenments</a>
+							<a class="dropdown-item" href="#">Mon agenda</a>
+						</div>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="#">Mon compte</a>
+					</li>
+				{% endif %}
+				{% if not app.user %}
+					<li class="nav-item">
+						<a class="nav-link" href="#">Connexion</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Enregistrement</a>
+					</li>
+				{% else %}
+					<li class="nav-item">
+						<a class="nav-link" href="#">Déconnexion</a>
+					</li>
+				{% endif %}
+			</ul>
+		</div>
+	</div>
+</nav>
