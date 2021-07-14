@@ -24,11 +24,10 @@
 						</div>
 					</div>
 
-
 					<div class="card-body">
 						<p class="card-text">{{ recipe.description | u.truncate(200, ' ...', false) }}</p>
 						<p class="text-end">
-							<a href="#">Lire la recette</a>
+							<a href="{{ path('recipe_show', {'id': recipe.id } ) }}">Lire la recette</a>
 						</p>
 
 					</div>
@@ -39,7 +38,6 @@
 							<div class="col-6 text-end">Le
 								{{ recipe.createdAt | date('d/m/Y') }}</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
