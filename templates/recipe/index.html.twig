@@ -16,9 +16,9 @@
 		{% for recipe in recipes %}
 			<div class="col-4">
 				<div class="card mb-3 border-info ">
-					<h3 class="card-header">{{ recipe.name }}</h3>
+					<h4 class="card-header text-center">{{ recipe.name }}</h3>
 					<div style="position: relative; text-align: center;width=" 100%" height="200" ">
-						<img src="{{ asset('img/kelmenuLogo.png') }}" alt="photo de {{ recipe.name }}">
+						<img src="{{ recipe.photo }}" alt="photo de {{ recipe.name }}">
 						<div style="  position: absolute; top: 8px; right: 16px;">
 							<span class="badge rounded-pill bg-secondary">Entrée</span>
 						</div>
