@@ -18,8 +18,8 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 1; $i <= 10; $i++) {
             $recipe = new Recipe();
             $recipe->setname($faker->words(rand(3, 8), true))
-                ->setDescription($faker->paragraph(rand(3, 8), true))
-                ->setUser($this->getReference('camile'))
+                ->setDescription($faker->paragraph(rand(30, 80), true))
+                ->setUser($this->getReference('user' . rand(1,5)))
                 ->setPhoto('https://picsum.photos/seed/' . $faker->word(1) . '/250')
                 ->setCreatedAt($faker->dateTimebetween('-7 days'))
                 ;
