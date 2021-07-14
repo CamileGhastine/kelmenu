@@ -14,14 +14,14 @@ class UserFixtures extends Fixture
     public function __construct(UserPasswordHasherInterface $userPasswordHasher)
     {
         $this->userPasswordHasher = $userPasswordHasher;
-        
     }
     public function load(ObjectManager $manager)
     {
         $user = new User();
         $user->setEmail('camile@camile.fr')
-        ->setPassword($this->userPasswordHasher->hashPassword($user, 'camile'));
-        
+            ->setPassword($this->userPasswordHasher->hashPassword($user, 'camile'))
+            ->setPseudo('Camile');
+
         $this->addReference('camile', $user);
 
         $manager->persist($user);

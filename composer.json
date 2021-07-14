@@ -27,12 +27,15 @@
         "symfony/runtime": "5.3.*",
         "symfony/security-bundle": "5.3.*",
         "symfony/stopwatch": "5.3.*",
+        "symfony/string": "5.3.*",
         "symfony/translation": "5.3.*",
         "symfony/twig-bundle": "5.3.*",
         "symfony/validator": "5.3.*",
         "symfony/var-dumper": "5.3.*",
         "symfony/web-profiler-bundle": "5.3.*",
-        "symfony/yaml": "5.3.*"
+        "symfony/yaml": "5.3.*",
+        "twig/extra-bundle": "^3.3",
+        "twig/string-extra": "^3.3"
     },
     "config": {
         "optimize-autoloader": true,
@@ -57,6 +60,12 @@
         "symfony/polyfill-php72": "*"
     },
     "scripts": {
+        "prepareDB": [
+            "php bin/console doctrine:database:drop --if-exists --force",
+            "php bin/console doctrine:database:create",
+            "php bin/console doctrine:schema:update --force",
+            "php bin/console doctrine:fixtures:load -n"
+        ],
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"

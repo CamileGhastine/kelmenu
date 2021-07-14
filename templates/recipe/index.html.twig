@@ -1,7 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RecipeController!{% endblock %}
+{% block title %}Hello RecipeController!
+{% endblock %}
 
 {% block body %}
-<h1>Mes recettes</h1>
+	<h1 class="text-center mb-3">Recettes</h1>
+	<div class="text-center mb-4">
+		<span class="badge rounded-pill bg-secondary">Apéro</span>
+		<span class="badge rounded-pill bg-secondary">Entrée</span>
+		<span class="badge rounded-pill bg-secondary">Plats</span>
+		<span class="badge rounded-pill bg-secondary">Dessert</span>
+
+	</div>
+	<div class="row">
+		{% for recipe in recipes %}
+			<div class="col-4">
+				<div class="card mb-3 border-info ">
+					<h3 class="card-header">{{ recipe.name }}</h3>
+					<div style="position: relative; text-align: center;width=" 100%" height="200" ">
+						<img src="{{ asset('img/kelmenuLogo.png') }}" alt="photo de {{ recipe.name }}">
+						<div style="  position: absolute; top: 8px; right: 16px;">
+							<span class="badge rounded-pill bg-secondary">Entrée</span>
+						</div>
+					</div>
+
+
+					<div class="card-body">
+						<p class="card-text">{{ recipe.description | u.truncate(200, ' ...', false) }}</p>
+						<p class="text-end">
+							<a href="#">Lire la recette</a>
+						</p>
+
+					</div>
+					<div class="card-footer text-muted">
+						<div class="row">
+							<div class="col-6 text-start">Par
+								{{ recipe.user.pseudo }}</div>
+							<div class="col-6 text-end">Le
+								{{ recipe.createdAt | date('d/m/Y') }}</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 {% endblock %}

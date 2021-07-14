@@ -20,7 +20,8 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
             $recipe->setname($faker->words(rand(3, 8), true))
                 ->setDescription($faker->paragraph(rand(3, 8), true))
                 ->setUser($this->getReference('camile'))
-                ->setPhoto('img/kelmenuLogo.jpeg')
+                ->setPhoto('img/kelmenuLogo.png')
+                ->setCreatedAt($faker->dateTimebetween('-7 days'))
                 ;
 
             $this->addReference('recipe' . $i, $recipe);

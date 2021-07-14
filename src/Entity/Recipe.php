@@ -49,6 +49,11 @@ class Recipe
      */
     private $pantries;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
     public function __construct()
     {
         $this->pantries = new ArrayCollection();
@@ -145,6 +150,18 @@ class Recipe
                 $pantry->setRecipe(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

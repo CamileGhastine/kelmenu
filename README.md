@@ -20,7 +20,7 @@ composer install
 	- your own mailer configuration
 
 6) create de database and load fixtures with the command :
-composer prepare
+composer prepareDB
 
 You can now enjoy kelmenu !!!
 
