@@ -8,44 +8,54 @@
 		<div class="collapse navbar-collapse" id="navbarColor02">
 			<ul class="navbar-nav me-auto">
 				<li class="nav-item">
-					<a class="nav-link active" href="{{ path('home_index') }}">Accueil
-						<span class="visually-hidden">(current)</span>
+					<a class="nav-link {{ nav == 'home_index' ? 'active' : null }}" href="{{ path('home_index') }}">Accueil
+						{% if nav == 'home_index' %}
+							<span class="visually-hidden">(current)</span>
+						{% endif %}
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Recettes</a>
+					<a class="nav-link {{ nav == 'recipe_index' ? 'active' : null }}" href="{{ path('recipe_index') }}">Recettes</a>
+					{% if nav == 'recipe_index' %}
+						<span class="visually-hidden">(current)</span>
+					{% endif %}
 				</li>
 				{% if not app.user %}
-
 					<li class="nav-item">
-						<a class="nav-link" href="#">Mon bloc notes</a>
+						<a class="nav-link" href="{{ path('security_login', {'notConnect' : true}) }}">Mon bloc notes</a>
 					</li>
 				{% else %}
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mon bloc notes</a>
+						<a class="nav-link dropdown-toggle {{ nav == 'dashboard_index' ? 'active' : null }}" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mon bloc notes</a>
+						{% if nav == 'dashboard_index' %}
+							<span class="visually-hidden">(current)</span>
+						{% endif %}
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">Accès à mon bloc notes</a>
+							<a class="dropdown-item" href="{{ path('dashboard_index') }}">Mon bloc notes</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#">Mes recettes</a>
 							<a class="dropdown-item" href="#">Mes évenments</a>
 							<a class="dropdown-item" href="#">Mon agenda</a>
+							<a class="dropdown-item" href="#">Mon compte</a>
 						</div>
-					</li>
-
-					<li class="nav-item">
-						<a class="nav-link" href="#">Mon compte</a>
 					</li>
 				{% endif %}
 				{% if not app.user %}
 					<li class="nav-item">
-						<a class="nav-link" href="{{path('security_login') }}">Connexion</a>
+						<a class="nav-link {{ nav == 'security_login' ? 'active' : null }}" href="{{path('security_login') }}">Connexion</a>
+						{% if nav == 'security_login' %}
+							<span class="visually-hidden">(current)</span>
+						{% endif %}
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{path('security_register') }}">Enregistrement</a>
+						<a class="nav-link {{ nav == 'security_register' ? 'active' : null }}" href="{{path('security_register') }}">Enregistrement</a>
 					</li>
 				{% else %}
 					<li class="nav-item">
 						<a class="nav-link" href="{{path('security_logout') }}">Déconnexion</a>
+						{% if nav == 'security_logout' %}
+							<span class="visually-hidden">(current)</span>
+						{% endif %}
 					</li>
 				{% endif %}
 			</ul>

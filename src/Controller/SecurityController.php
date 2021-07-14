@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\RegistrationFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,10 +18,13 @@ class SecurityController extends AbstractController
     /**
      * @Route("/login", name="security_login")
      */
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(AuthenticationUtils $authenticationUtils, Request $request): Response
     {
         if ($this->getUser()) {
             return $this->redirectToRoute('home_index');
+        }
+        if($request->query->get('notConnect')) {
+            $this->addFlash('danger', 'Vous devez être connecté pour profiter de cette fonctionnalité.');
         }
 
         // get the login error if there is one
@@ -28,7 +32,11 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('security/login.html.twig', [
+            'last_username' => $lastUsername,
+             'error' => $error,
+             'nav' => "security_login",
+            ]);
     }
 
     /**
@@ -62,11 +70,17 @@ class SecurityController extends AbstractController
             $entityManager->flush();
             // do anything else you need here, like send an email
 
+            $this->addFlash(
+                'success',
+            'Vous avez été enregistré avec succès. Connectez-vous pour profiter de toutes les fonctionnalités de KelMenu.com'
+            );
+
             return $this->redirectToRoute('security_login');
         }
 
         return $this->render('security/register.html.twig', [
             'registrationForm' => $form->createView(),
+            'nav' => "security_register",
         ]);
     }
 }

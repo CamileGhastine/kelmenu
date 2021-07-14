@@ -25,7 +25,7 @@ composer prepare
 You can now enjoy kelmenu !!!
 
 You can connect as registered user with connection information below :
-- username : camile
+- username : camile@camile.fr
 - password : camile
 
 
